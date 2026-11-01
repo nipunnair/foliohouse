@@ -17,6 +17,11 @@ async function fixture(t){
  return {root,id,dir};
 }
 test('publish requires explicit approval',async t=>{const {root,id}=await fixture(t);await assert.rejects(publishDraft(root,'demo',id),/approval/);});
+test('root publication requires an explicit deployment opt-in',async t=>{
+ const {root,id}=await fixture(t);const file=path.join(root,'sites/demo.yaml');
+ const site=YAML.parse(await fs.readFile(file,'utf8'));site.publishLocal=false;await fs.writeFile(file,YAML.stringify(site));
+ await approveDraft(root,'demo',id);await assert.rejects(publishDraft(root,'demo',id,{dryRun:true}),/deployment target/);
+});
 test('placeholder alt and test subject cannot be approved',async t=>{const {root,id}=await fixture(t);await editDraft(root,'demo',id,{alt:'Describe the attached image here.'});await assert.rejects(approveDraft(root,'demo',id),/placeholder/);});
 test('editing invalidates approval',async t=>{const {root,id}=await fixture(t);await approveDraft(root,'demo',id);await editDraft(root,'demo',id,{title:'Revised study'});await assert.rejects(publishDraft(root,'demo',id),/approval/);});
 test('HTML review escapes supplied metadata and embeds previews privately',async t=>{const {root,id}=await fixture(t);await editDraft(root,'demo',id,{title:'<script>alert(1)</script>'});const file=await previewDraft(root,'demo',id);const html=await fs.readFile(file,'utf8');assert.ok(html.includes('&lt;script&gt;'));assert.ok(!html.includes('<script>'));assert.ok(html.includes('data:image/webp;base64,'));});

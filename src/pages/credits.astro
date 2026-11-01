@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {works} from '../lib/content';
+const credited=works.filter(w=>w.sourceUrl?.startsWith('https://www.artic.edu/artworks/'));
+---
+<Layout title="Image credits">
+<section class="detail"><p class="eyebrow">OPEN CULTURE</p><h1>Art with a source.</h1><p>Demo images are public-domain works supplied through the Art Institute of Chicago’s open-access collection. The museum does not endorse FolioHouse. Display titles may be shortened; follow each record for full catalog information.</p>
+<ul>{credited.map(work=><li><a href={work.sourceUrl}>{work.title}</a> — {work.credit}</li>)}</ul>
+<p><a href="https://www.artic.edu/open-access/open-access-images">Museum image policy</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></p>
+<p>FolioHouse code is MIT-licensed. This does not change the rights of artwork you upload to your own portfolio.</p></section>
+</Layout>

@@ -18,3 +18,4 @@ portfolios/
 .DS_Store
 __pycache__/
 scripts/bootstrap.mjs
+demo-dist/

@@ -1,0 +1,43 @@
+- museumId: 24645
+  imageId: b3974542-b9b4-7568-fc4b-966738f61d78
+  title: The Great Wave
+  artist: Katsushika Hokusai
+  date: 1830/33
+  collection: Printmaking
+  featured: true
+  alt: A towering blue wave curls over small boats, with Mount Fuji visible in the distance.
+- museumId: 16568
+  imageId: 3c27b499-af56-f0d5-93b5-a7f2f1ad5813
+  title: Water Lilies
+  artist: Claude Monet
+  date: "1906"
+  collection: Painting
+  alt: Lily pads and pale blossoms float across a pond painted in soft green, blue, and violet.
+- museumId: 125577
+  imageId: 047e93a7-0ee1-0b36-7ef0-db30bf5badca
+  title: Fern Study
+  artist: Unknown
+  date: c. 1850
+  collection: Photography
+  alt: A botanical fern study with fine branching fronds.
+- museumId: 69533
+  imageId: ea1e120f-2a56-99a8-99d8-ea824d466d65
+  title: Bird’s Nest and Ferns
+  artist: Fidelia Bridges
+  date: "1863"
+  collection: Painting
+  alt: A bird’s nest rests among delicate ferns and woodland plants.
+- museumId: 10926
+  imageId: c047003a-949c-a581-7c5a-2c415e8cac75
+  title: Morning Mist
+  artist: Utagawa Hiroshige
+  date: c. 1833/34
+  collection: Printmaking
+  alt: Travellers pass through a landscape of trees and buildings softened by morning mist.
+- museumId: 55394
+  imageId: b0bbd380-e176-e2ee-41c8-5f5a6957e365
+  title: Organ Player
+  artist: Jean-Eugène-Auguste Atget
+  date: ""
+  collection: Photography
+  alt: A historical street photograph showing an organ player.

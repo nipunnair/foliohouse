@@ -2,14 +2,20 @@
 
 A self-hosted, static-first portfolio publisher for artists, photographers, and small creative collections. Bring your own images, keep your originals private, and publish a beautiful portable website without a database or public admin panel.
 
-**Status: early pilot.** Local import, email draft intake, explicit review/approval, static builds, and atomic local deployment are implemented. This is not an unattended email publishing service. The repository is initially private; a public open-source release and code license are pending.
+**MIT-licensed · self-hosted · static-first.** [Explore the live demo](https://nipunnair.github.io/foliohouse/) · [Contribute](CONTRIBUTING.md) · [Security](SECURITY.md)
+
+**Status: early pilot.** Local import, email draft intake, explicit review/approval, static builds, and atomic local deployment are implemented. This is not an unattended email publishing service.
+
+![The Great Wave — public-domain demo artwork from the Art Institute of Chicago](examples/showcase/assets/24645.jpg)
+
+The demo combines painting, printmaking, and early photography. All sample artwork has documented public-domain provenance; see [image credits](CREDITS.md). No personal portfolio content is included.
 
 ## Quick start
 
 Requires Node 22.12+ and npm. Python 3 is needed only for the optional Proton Bridge pilot.
 
 ```sh
-git clone git@github.com:nipunnair/foliohouse.git
+git clone https://github.com/nipunnair/foliohouse.git
 cd foliohouse
 npm ci
 node scripts/init-demo.mjs --dry-run
@@ -52,7 +58,7 @@ A profile in `sites/<id>.yaml` defines allowed senders, recipient, collections, 
 
 Personal files remain on the host and require a separate backup. Git does not back them up. Never serve the repository root. Approved website output is publicly accessible even though its source records are Git-ignored. `noindex` is not access control.
 
-Do not force-add ignored files, submit real emails as test fixtures, or include artwork in issues. The software's eventual license will not license anyone's portfolio content.
+Do not force-add ignored files, submit real emails as test fixtures, or include personal artwork in issues. The MIT software license does not license anyone's portfolio content. Curated demo assets have their own documented public-domain/CC0 status.
 
 ## Hosting and portability
 
@@ -77,4 +83,14 @@ Use repository issues for reproducible bugs and feature requests, with runtime v
 
 Next: durable mailbox polling/checkpoints, provider adapters, separate deployment targets, backup/restore validation, accessibility/browser coverage, and public-release licensing. Gmail API, automatic mail receipts, browser editing, and unattended publishing are not implemented.
 
-To make the project discoverable after release: publish a generic demo, enable public issues, add portfolio/static-site/self-hosted/email-publishing topics, and document tested hosting recipes. No family gallery is needed as demo content.
+## Museum showcase and GitHub Pages
+
+`npm run demo:build` builds an isolated six-work showcase into `demo-dist/`. It does not read or modify your portfolio, inbox, or live release. Source images are bundled, so builds do not depend on museum API availability. To preview at the root locally: `FOLIO_BASE=/ FOLIO_SITE=http://localhost:4322 npm run demo:build`, then `python3 -m http.server 4322 --directory demo-dist --bind 127.0.0.1`.
+
+The Pages workflow deploys only `demo-dist/` from main. Forks should adjust the workflow domain/base path and enable Settings → Pages → GitHub Actions. The showcase is static: visitors cannot email it or upload content to it.
+
+CI runs on pushes, pull requests, and weekly on Mondays at 09:23 UTC. It tests, audits dependencies, checks tracked paths, and builds both examples. A nightly rebuild is unnecessary for bundled static assets. Dependabot proposes dependency updates; deployment is not scheduled and changes are not auto-merged.
+
+## License
+
+Software: [MIT](LICENSE). Demo images: [separate public-domain credits](CREDITS.md). Your own artwork remains yours.
