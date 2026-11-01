@@ -1,0 +1,6 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import {collections,works} from '../lib/content';
+---
+<Layout title="Collections"><section class="page-heading"><p class="eyebrow">WAYS OF SEEING</p><h1>A few threads.<br /><em>Many possibilities.</em></h1><p>Follow an idea through a collection of work.</p></section>{collections.map(c=><section class="collection-section"><h2>{c}</h2><div class="work-grid">{works.filter(w=>w.collection===c).map((work,index)=><Card work={work} index={index}/>)}</div></section>)}</Layout>

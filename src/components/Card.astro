@@ -1,0 +1,8 @@
+---
+import {url} from '../lib/content';
+const {work, index = 0} = Astro.props;
+---
+<a class="work-card" href={url(`work/${work.id}/`)} data-collection={work.collection}>
+  <div class:list={['art-frame', `tone-${index%4}`]}><img src={url(work.thumbnail)} width={work.width} height={work.height} alt={work.alt} loading="lazy" /><span class="view">View work ↗</span></div>
+  <div class="card-label"><div><h3>{work.title}</h3><p>{work.collection}</p></div><span aria-hidden="true">↗</span></div>
+</a>

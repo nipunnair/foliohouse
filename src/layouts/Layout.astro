@@ -1,0 +1,23 @@
+---
+import { site, url } from '../lib/content';
+import '../styles/global.css';
+const { title = site.name, description = site.intro, image } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title} — FolioHouse</title><meta name="description" content={description} />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:title" content={title} /><meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />{image && <meta property="og:image" content={new URL(url(image), Astro.site).href} />}
+  <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header"><a class="brand" href={url()}><span class="brand-mark">f.</span><span>{site.name}<small>THE PORTFOLIO</small></span></a>
+  <nav aria-label="Main navigation"><a href={url('#work')}>Work</a><a href={url('collections/')}>Collections</a><a href={url('about/')}>About <span aria-hidden="true">↗</span></a></nav></header>
+  <main id="main"><slot /></main>
+  <footer><div><a class="brand footer-brand" href={url()}>Selected with intention.</a><p>{site.footer}</p></div><div class="footer-right">A home for creative work.<br /><span>Built with FolioHouse</span></div></footer>
+</body>
+</html>

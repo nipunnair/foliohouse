@@ -1,0 +1,12 @@
+id: demo
+name: Studio Portfolio
+url: https://portfolio.example.com
+contentRoot: .
+inbox: publish@example.com
+allowedSenders:
+  - artist@example.com
+collections:
+  - Photography
+  - Studies
+mode: draft-only
+publishLocal: false

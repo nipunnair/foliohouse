@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {works,url} from '../../lib/content';
+export function getStaticPaths(){return works.map(work=>({params:{id:work.id},props:{work}}));}
+const {work}=Astro.props;
+const next=works[(works.findIndex(w=>w.id===work.id)+1)%works.length];
+---
+<Layout title={work.title} description={work.description} image={work.image}>
+<section class="detail"><a class="back" href={url('#work')}>← Back to selected work</a><div class="detail-heading"><div><p class="eyebrow">{work.collection}</p><h1>{work.title}</h1></div><button class="text-link" id="share">Copy link ↗</button></div>
+<button class="detail-image" id="expand" aria-label={`Enlarge ${work.title}`}><img src={url(work.image)} width={work.width} height={work.height} alt={work.alt}/><span>View full image ⤢</span></button>
+<div class="detail-notes"><p>{work.description}</p><div><p class="eyebrow">FROM THE COLLECTION</p><a href={url('collections/')}>{work.collection} ↗</a><p class="small">Preview label · Original artwork rights retained.</p></div></div>
+<a class="next-work" href={url(`work/${next.id}/`)}><span>CONTINUE EXPLORING</span><h2>{next.title} ↗</h2></a></section>
+<dialog id="lightbox" aria-label={work.title}><button id="close" autofocus>Close ×</button><img src={url(work.image)} alt={work.alt}/></dialog>
+</Layout>
+<script>
+const dialog=document.querySelector<HTMLDialogElement>('#lightbox')!;
+document.querySelector('#expand')?.addEventListener('click',()=>dialog.showModal());
+document.querySelector('#close')?.addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+document.querySelector('#share')?.addEventListener('click',async(e)=>{const button=e.currentTarget as HTMLButtonElement;try{await navigator.clipboard.writeText(location.href);button.textContent='Link copied ✓';}catch{button.textContent='Copy the address from your browser';}});
+</script>
