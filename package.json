@@ -18,7 +18,7 @@
     "node": ">=22.12.0"
   },
   "dependencies": {
-    "astro": "^7.4.4",
+    "astro": "^7.4.5",
     "html-to-text": "^10.0.1",
     "mailparser": "^3.14.1",
     "sharp": "^0.35.5",
