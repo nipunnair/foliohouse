@@ -20,7 +20,7 @@
   "dependencies": {
     "astro": "^7.4.4",
     "html-to-text": "^10.0.1",
-    "mailparser": "^3.14.1",
+    "mailparser": "^3.14.2",
     "sharp": "^0.35.5",
     "yaml": "^2.9.1"
   },
